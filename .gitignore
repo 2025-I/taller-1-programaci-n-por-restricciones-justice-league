@@ -1,0 +1,25 @@
+# Archivos de configuración de Visual Studio Code
+.vscode/
+
+# Archivos generados por MiniZinc
+*.ozn
+*.dzn-output
+*.json-output
+*.sol
+*.ozn
+*.err
+*.time
+*.mzn.errors
+*.mzn.tmp
+
+# Archivos temporales y de caché
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Carpetas comunes de compilación o entorno
+build/
+dist/
+cache/
