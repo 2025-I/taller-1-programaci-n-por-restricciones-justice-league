@@ -1,13 +1,13 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/agiyKqJx)
-# Ejemplo de titulo de Taller
+# Taller 1: Modelamiento de CSP
 
 ## Integrantes
 
 Nombre completo | Código
-Estudiante1 | 123456
-Estudiante2 | 123457
-Estudiante3 | 123458
+Juan Esteban López Aránzazu | 2313026
+Victor Manuel Álzate Morales | 2313022
+Diego Alejandro Tolosa Sanchez | 2313023
 
 ## Descripción del taller
 
-Descripción del taller
+Este taller consiste en modelar y resolver los juegos de Sudoku y Kakuro como problemas de satisfacción de restricciones (CSP). Se formularán las reglas de cada juego como restricciones, se implementarán modelos en MiniZinc y se resolverán. Además, se compararán y analizarán los resultados obtenidos al aplicar diferentes estrategias de distribución.
