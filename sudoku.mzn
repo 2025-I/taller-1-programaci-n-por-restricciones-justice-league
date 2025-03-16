@@ -30,4 +30,15 @@ constraint forall(i in 1..S-1, j in 1..S-1) (
 );
 
 % Solución
+solve satisfy;
+%solve :: int_search(grid, first_fail, complete) satisfy;
+%solve :: int_search(grid, smallest, complete) satisfy;
+%solve :: int_search(grid, input_order, complete) satisfy;
 
+% salida
+output [
+  if j == N then show(grid[i, j]) ++ "\n"
+  else show(grid[i, j]) ++ " "
+  endif
+  | i in 1..N, j in 1..N
+];
