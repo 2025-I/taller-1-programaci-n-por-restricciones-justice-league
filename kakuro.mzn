@@ -36,3 +36,16 @@ constraint forall(j in 1..M) (
 );
 
 % Solución
+
+solve satisfy;
+%solve :: int_search(grid, first_fail, complete) satisfy;
+%solve :: int_search(grid, smallest, complete) satisfy;
+%solve :: int_search(grid, input_order, complete) satisfy;
+
+% salida
+output [
+  if j == M then show(grid[i, j]) ++ "\n"
+  else show(grid[i, j]) ++ " "
+  endif
+  | i in 1..N, j in 1..M
+];
