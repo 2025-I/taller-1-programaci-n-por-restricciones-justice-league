@@ -104,18 +104,28 @@ output [
 
 `first_fail` implementa la heurística del "primero en fallar". Esta estrategia elíge primero la variable con menor número de valores posibles, lo que suele reducir el espacio de búsquedad al resolver las variables más restringidas antes.
 
-![Arbol Sudoku first_fail](/docs/images/arbol-sudoku-first_fail.jpg)
+![Arbol Sudoku First_fail](/docs/images/arbol-sudoku-first_fail.jpg)
+
+El análisis del árbol de búsqueda con la estrategia `first_fail` muestra una profundidad de 20, indicando que el algoritmo tuvo que tomar hasta 20 decisiones consecutivas en el peor caso antes de alcanzar una solución o detectar un fallo.
+
+Se exploraron 1372 nodos, de los cuales 1110 representan estados válidos donde las restricciones del Sudoku se cumplen parcialmente. Sin embargo, hubo 263 fallos (backtracking), lo que significa que en esos puntos el algoritmo encontró asignaciones incorrectas y tuvo que retroceder.
 
 ### 2. Estrategia de Búsquedad `Smallest`.
 
 `Smallest` selecciona primero el valor más pequeño disponible en el dominio de una variable. Esta estrategia permite explorar primero las opciones más bajas, lo que puede ser útil en ciertos problemas donde los valores pequeños tienen más probabilidades de formar parte de la solución.
 
-![Arbol Sudoku smallest](/docs/images/arbol-sudoku-smallest.jpg)
+![Arbol Sudoku Smallest](/docs/images/arbol-sudoku-smallest.jpg)
 
 ### 3. Estrategia de Búsquedad `Input_order`.
 
 `Input_order` Sigue el orden en el que las variables aparecen en la entrada del problema. Es decir, se resuelven las celdas en el mismo orden en que fueron leídas, sin priorizar aquellas con menos opciones disponibles. Sigue un enfoque directo y secuencial.
 
-![Arbol Sudoku smallest](/docs/images/arbol-sudoku-input_order.jpg)
+![Arbol Sudoku Input_order](/docs/images/arbol-sudoku-input_order.jpg)
 
 ## Análisis comparativo de las ventajas y desventajas de cada implementación
+
+| Estrategia de Búsquedad  | :white_check_mark: Ventajas | :x: Desventajas |
+| -| - | - |
+| **First_fail**| :heavy_check_mark: Reduce el espacio de búsquedad al enfocarse en las variables más restricitvas primero. <br> :heavy_check_mark: Disminuye el número de fallos y retrocesos (backtracking). <br> :heavy_check_mark: Es eficiente en problemas donde algunas variables tiene dominios muy pequeños o están altamente restringidas. <br> :heavy_check_mark: Puede acelerar la búsqueda en problemas donde hay pocas soluciones posibles.| :x: Puede requerir cálculos adicionales para determinar qué variable tiene el menor número de valores posibles. <br> :x: Aunque encuentra una solución rápidamente, no necesariamente es la más óptima en términos de calidad. <br> :x: En problemas con muchas soluciones, puede hacer que se explore más de lo necesario.| 
+| **Smallest**             | :heavy_check_mark: Explora primero los valores más bajos, lo que puede llevar a soluciones más naturales en ciertos problemas. <br> :heavy_check_mark: Puede ser útil en problemas donde los valores más pequeños tienen mayor probabilidad de ser parte de la solución. <br> :heavy_check_mark: En problemas numéricos, puede generar soluciones con valores más pequeños, que podrían ser preferibles en algunos casos. <br>   | :x: No tiene en cuenta las restricciones del problema al seleccionar los valores. Lo que puede resultar en una exploración menos eficiente. <br> :x: Puede conducir a una exploración innecesaria si los valores más pequeños no forman parte de la solución. <br> :x: Puede ser menos eficiente en problemas donde los valores más grandes son más revelante, como en problemas de maximización. <br> |
+| **Input_order**             | :heavy_check_mark: Simple de implementar y no requiere cálculos adicionales. <br> :heavy_check_mark: Puede ser útil si el orden de entrada ya está optimizado para un caso específico. <br> :heavy_check_mark: Puede ser adecuado en problemas donde el orden natural de lectura de datos es relevante. <br>  | :x: No optimiza la búsqueda, lo que puede aumentar el número de intentos fallidos. <br> :x: Puede generar árboles de búsqueda muy grandes y profundos, con más backtracking. <br> :x: No prioriza variables críticas, lo que puede hacer más lenta la resolución del Sudoku. <br> :x: En problemas con muchas restricciones, puede conducir a asignaciones erróneas frecuentes. <br>  |
