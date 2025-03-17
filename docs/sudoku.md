@@ -1,5 +1,11 @@
 # Modelado del Sudoku como un Problema de Satisfacción de Restricciones (CSP)
 
+**Autor(es):** Diego Alejandro Tolosa Sanchez, Juan Esteban López Aránzazu, Victor Manuel Álzate Morales.
+**Curso:** Programación por Restricciones
+**Profesor:** Carlos Andrés Delgado S.
+
+---
+
 ## Descripción detallada del modelo CSP
 
 ### 1. Variables del problema
@@ -93,5 +99,23 @@ output [
 ```
 
 ## Resultados obtenidos con las diferentes estrategias de distribución
+
+### 1. Estrategia de Búsquedad `first_fail`.
+
+`first_fail` implementa la heurística del "primero en fallar". Esta estrategia elíge primero la variable con menor número de valores posibles, lo que suele reducir el espacio de búsquedad al resolver las variables más restringidas antes.
+
+![Arbol Sudoku first_fail](/docs/images/arbol-sudoku-first_fail.jpg)
+
+### 2. Estrategia de Búsquedad `Smallest`.
+
+`Smallest` selecciona primero el valor más pequeño disponible en el dominio de una variable. Esta estrategia permite explorar primero las opciones más bajas, lo que puede ser útil en ciertos problemas donde los valores pequeños tienen más probabilidades de formar parte de la solución.
+
+![Arbol Sudoku smallest](/docs/images/arbol-sudoku-smallest.jpg)
+
+### 3. Estrategia de Búsquedad `Input_order`.
+
+`Input_order` Sigue el orden en el que las variables aparecen en la entrada del problema. Es decir, se resuelven las celdas en el mismo orden en que fueron leídas, sin priorizar aquellas con menos opciones disponibles. Sigue un enfoque directo y secuencial.
+
+![Arbol Sudoku smallest](/docs/images/arbol-sudoku-input_order.jpg)
 
 ## Análisis comparativo de las ventajas y desventajas de cada implementación
