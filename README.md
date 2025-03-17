@@ -31,3 +31,11 @@ minizinc kakuro.mzn input/kakuro1.dzn
 minizinc kakuro.mzn input/kakuro2.dzn
 minizinc kakuro.mzn input/kakuro3.dzn
 ```
+
+## Ejecución completa
+
+Para ejecutar todos los modelos de Sudoku y Kakuro de forma automática, utilice el siguiente comando:
+
+```bash
+sh test.sh
+```
