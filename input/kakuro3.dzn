@@ -1,0 +1,17 @@
+N = 5; % Número de filas
+M = 5; % Número de columnas
+
+% Sumas de las filas
+row_sums = [15, 20, 25, 30, 35];
+
+% Sumas de las columnas
+col_sums = [15, 20, 25, 30, 35];
+
+% Matriz de valores iniciales
+initial_values = array2d(1..N, 1..M, [
+    1, 0, 0, 0, 0,
+    0, 0, 4, 0, 0,
+    0, 0, 0, 6, 0,
+    0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0
+]);
