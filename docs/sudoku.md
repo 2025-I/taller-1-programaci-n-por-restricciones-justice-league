@@ -1,8 +1,8 @@
 # Modelado del Sudoku como un Problema de Satisfacción de Restricciones (CSP)
 
-**Autor(es):** Diego Alejandro Tolosa Sanchez, Juan Esteban López Aránzazu, Victor Manuel Álzate Morales.
-**Curso:** Programación por Restricciones
-**Profesor:** Carlos Andrés Delgado S.
+- **Autor(es):** Diego Alejandro Tolosa Sanchez, Juan Esteban López Aránzazu, Victor Manuel Álzate Morales.
+- **Curso:** Programación por Restricciones
+- **Profesor:** Carlos Andrés Delgado S.
 
 ---
 
@@ -10,7 +10,7 @@
 
 ### 1. Variables del problema
 
-A continuación se describen las variables definidas en el modelo:
+A continuación, se describen las variables definidas en el modelo:
 
 - **N:** Representa el tamaño total del tablero del Sudoku.
 - **S:** Representa el tamaño de cada subcuadrícula (por ejemplo, un bloque de 3×3).
@@ -23,6 +23,8 @@ A continuación se describen las variables definidas en el modelo:
 
 ### 2. Dominios asociados a cada variable
 
+A continuación, se describen los dominios de las variables en el modelo:
+
 - **N:** Es una variable entera fija con valor 9.
 
 - **S:** Es una variable entera fija con valor 3.
@@ -33,7 +35,7 @@ A continuación se describen las variables definidas en el modelo:
 
 ### 3. Restricciones
 
-A continuación se describen las restricciones del modelo en texto normal:
+A continuación, se describen las restricciones del modelo:
 
 - **Restricción de valores iniciales:**
   Para cada celda del tablero, si en la matriz de valores iniciales existe un número (es decir, el valor es mayor que 0), se debe fijar ese mismo valor en la celda correspondiente de la matriz de decisión. En otras palabras, si initial_values[i, j] > 0, entonces grid[i, j] debe ser igual a initial_values[i, j].
