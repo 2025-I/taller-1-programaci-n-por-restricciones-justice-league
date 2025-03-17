@@ -15,13 +15,13 @@ A continuación se describen las variables definidas en el modelo:
 
 ### 2. Dominios asociados a cada variable
 
-- **N** y **M**: Dominio: Son enteros, cuyos valores se definen en la instancia del problema.
+- **N** y **M:** Son enteros, cuyos valores se definen en la instancia del problema.
 
-- **grid:** Dominio: Cada elemento es una variable entera que puede tomar valores del 1 al 9 (es decir, 1..9).
+- **grid:** Cada elemento es una variable entera que puede tomar valores del 1 al 9 (es decir, 1..9).
 
-- **row_sums** y **col_sums:** Dominio: Cada elemento es un entero. Los valores concretos se establecen en la instancia y representan la suma que deben alcanzar las filas y columnas, respectivamente.
+- **row_sums** y **col_sums:** Cada elemento es un entero. Los valores concretos se establecen en la instancia y representan la suma que deben alcanzar las filas y columnas, respectivamente.
 
-- **initial_values:** Dominio: Cada elemento es un entero. Se utiliza para fijar determinados valores en la matriz grid cuando son mayores que 0.
+- **initial_values:** Cada elemento es un entero. Se utiliza para fijar determinados valores en la matriz grid cuando son mayores que 0.
 
 ### 3. Restricciones
 
