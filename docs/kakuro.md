@@ -12,16 +12,41 @@
 
 A continuación, se describen las variables definidas en el modelo:
 
+- **N, M:** Representan el tamaño del tablero en términos de filas y columnas.
+- **row_groups_count, col_groups_count:** Cantidad de grupos de suma definidos en filas y columnas.
+- **initial_values:** Matriz que indica si una celda está fija (1) o es jugable (0).
+- **row_groups:** Lista de grupos de suma en filas, con su fila, columna de inicio, columna final y suma objetivo.
+- **col_groups:** Lista de grupos de suma en columnas, con su columna, fila de inicio, fila final y suma objetivo.
+- **grid:** Matriz de variables de decisión, con valores entre 1 y 9 para celdas jugables.
 
 ### 2. Dominios asociados a cada variable
 
 A continuación, se describen los dominios de las variables en el modelo:
 
+- **N, M:** Son valores enteros fijos que representan las dimensiones del tablero.
+- **row_groups_count, col_groups_count:** Son valores enteros fijos que indican la cantidad de grupos de suma en filas y columnas, respectivamente.
+- **initial_values:** Es una matriz de valores enteros donde 1 representa una celda bloqueada (se convierte en 0 en grid) y 0 representa una celda jugable (cuyo valor debe estar entre 1 y 9).
+- **row_groups, col_groups:** Cada grupo tiene cuatro valores enteros (posición inicial y final, y suma objetivo).
+- **grid:** Puede tomar valores entre 1 y 9 si la celda es jugable; si está predefinida, debe mantenerse en 0.
 
 ### 3. Restricciones
 
 A continuación, se describen las restricciones del modelo:
 
+#### Restricción de valores iniciales  
+Cada celda en `grid` debe respetar los valores dados en `initial_values`.  
+- Si `initial_values[i, j] == 1`, entonces `grid[i, j] = 0` (la celda está bloqueada).  
+- Si `initial_values[i, j] == 0`, entonces `grid[i, j]` debe tomar un valor entre `1` y `9`.  
+
+#### Restricción de grupos en filas  
+Para cada grupo de suma en filas, se debe cumplir lo siguiente:  
+- La suma de los valores dentro del rango de columnas definido para el grupo debe ser igual a la suma objetivo del grupo.  
+- Todos los valores dentro del grupo deben ser distintos (no se pueden repetir).  
+
+#### Restricción de grupos en columnas  
+Para cada grupo de suma en columnas, se debe cumplir lo siguiente:  
+- La suma de los valores dentro del rango de filas definido para el grupo debe ser igual a la suma objetivo del grupo.  
+- Todos los valores dentro del grupo deben ser distintos (no se pueden repetir). 
 
 ## Código MiniZinc utilizado
 
@@ -97,6 +122,9 @@ output [
 ```
 
 ## Resultados obtenidos con las diferentes estrategias de distribución
+
+> [!NOTE]
+> Las pruebas del modelo se realizaron utilizando el archivo de datos [`sudoku3.dzn`](/input/kakuro1.dzn)
 
 ### 1. Estrategia de Búsquedad `first_fail`.
 
