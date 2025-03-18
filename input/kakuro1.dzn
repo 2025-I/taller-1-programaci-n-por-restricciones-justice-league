@@ -1,0 +1,33 @@
+N = 5;
+M = 5;
+
+% Matriz de la cuadrícula
+initial_values = array2d(1..N, 1..M, [
+  1, 1, 1, 1, 1,
+  1, 0, 0, 0, 1,
+  1, 0, 0, 0, 1,
+  1, 1, 0, 0, 0,
+  1, 1, 0, 0, 0
+]);
+
+% Número de grupos de suma en filas
+row_groups_count = 4;
+
+row_groups = array2d(1..row_groups_count, 1..4, [
+  % [fila, columna inicial, columna final, suma objetivo]
+  2, 2, 4, 15,
+  3, 2, 4, 8,
+  4, 3, 5, 15,
+  5, 3, 5, 19
+]);
+
+% Número de grupos de suma en columnas
+col_groups_count = 4;
+
+col_groups = array2d(1..col_groups_count, 1..4, [
+  % [columna, fila inicial, fila final, suma objetivo]
+  2, 2, 3, 11,
+  3, 2, 5, 16,
+  4, 2, 5, 17,
+  5, 4, 5, 13
+]);

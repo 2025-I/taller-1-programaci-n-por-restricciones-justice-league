@@ -124,7 +124,7 @@ output [
 ## Resultados obtenidos con las diferentes estrategias de distribución
 
 > [!NOTE]
-> Las pruebas del modelo se realizaron utilizando el archivo de datos [`sudoku3.dzn`](/input/kakuro1.dzn)
+> Las pruebas del modelo se realizaron utilizando el archivo de datos [`kakuro1.dzn`](/input/kakuro1.dzn)
 
 ### 1. Estrategia de Búsquedad `first_fail`.
 
