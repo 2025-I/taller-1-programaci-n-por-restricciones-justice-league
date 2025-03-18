@@ -102,6 +102,9 @@ output [
 
 ## Resultados obtenidos con las diferentes estrategias de distribución
 
+> [!NOTE]
+> Las pruebas del modelo se realizaron utilizando el archivo de datos [`sudoku3.dzn`](/input/sudoku3.dzn)
+
 ### 1. Estrategia de Búsquedad `first_fail`.
 
 `first_fail` implementa la heurística del "primero en fallar". Esta estrategia elíge primero la variable con menor número de valores posibles, lo que suele reducir el espacio de búsquedad al resolver las variables más restringidas antes.
@@ -118,16 +121,30 @@ Se exploraron 1372 nodos, de los cuales 1110 representan estados válidos donde 
 
 ![Arbol Sudoku Smallest](/docs/images/arbol-sudoku-smallest.jpg)
 
+El análisis del árbol de búsqueda con la estrategia `smallest` muestra una profundidad de 26, lo que indica que el algoritmo tuvo que tomar hasta 26 decisiones consecutivas en el peor caso antes de alcanzar una solución o detectar un fallo.
+
+Se exploraron 3708 nodos, lo que es considerablemente mayor en comparación con la estrategia `first_fail`, lo que sugiere que esta heurística genera un árbol de búsqueda más grande. Aunque el número de nodos válidos (1110) es el mismo, los fallos aumentaron significativamente a 2599, lo que indica que el algoritmo tuvo que retroceder muchas más veces debido a elecciones de valores incorrectas.
+
+Esto sugiere que, aunque `smallest` puede ser útil en ciertos problemas, en este caso no reduce la cantidad de backtracking y puede aumentar la profundidad del árbol, haciendo que la búsqueda sea menos eficiente en términos de exploración de estados.
+
 ### 3. Estrategia de Búsquedad `Input_order`.
 
 `Input_order` Sigue el orden en el que las variables aparecen en la entrada del problema. Es decir, se resuelven las celdas en el mismo orden en que fueron leídas, sin priorizar aquellas con menos opciones disponibles. Sigue un enfoque directo y secuencial.
 
 ![Arbol Sudoku Input_order](/docs/images/arbol-sudoku-input_order.jpg)
 
+El análisis del árbol de búsqueda con la estrategia `input_order` muestra que la profundidad máxima alcanzada es 27, lo que significa que el algoritmo necesitó tomar hasta 27 decisiones consecutivas en el peor caso antes de encontrar una solución o retroceder.
+
+Se exploraron 3468 nodos, lo que es menor que con la estrategia `smallest` pero aún mayor que con `first_fail`. El número de nodos fallidos (2359) es alto, pero ligeramente menor que en `smallest`, lo que sugiere que el algoritmo realiza un número significativo de retrocesos debido a elecciones incorrectas.
+
+El número de nodos exitosos (1110) se mantiene constante en todas las estrategias, lo que indica que el problema tiene un número fijo de soluciones parciales viables.
+
+En comparación con `first_fail`, esta estrategia no prioriza las variables más restringidas, lo que puede llevar a un mayor número de decisiones erróneas antes de encontrar una solución. Sin embargo, es más eficiente que `smallest` en términos de nodos explorados y fallos generados, aunque su profundidad es mayor, lo que puede implicar un mayor tiempo de cómputo en algunos casos.
+
 ## Análisis comparativo de las ventajas y desventajas de cada implementación
 
 | Estrategia de Búsquedad  | :white_check_mark: Ventajas | :x: Desventajas |
 | -| - | - |
-| **First_fail**| :heavy_check_mark: Reduce el espacio de búsquedad al enfocarse en las variables más restricitvas primero. <br> :heavy_check_mark: Disminuye el número de fallos y retrocesos (backtracking). <br> :heavy_check_mark: Es eficiente en problemas donde algunas variables tiene dominios muy pequeños o están altamente restringidas. <br> :heavy_check_mark: Puede acelerar la búsqueda en problemas donde hay pocas soluciones posibles.| :x: Puede requerir cálculos adicionales para determinar qué variable tiene el menor número de valores posibles. <br> :x: Aunque encuentra una solución rápidamente, no necesariamente es la más óptima en términos de calidad. <br> :x: En problemas con muchas soluciones, puede hacer que se explore más de lo necesario.| 
+| **First_fail**| :heavy_check_mark: Reduce el espacio de búsquedad al enfocarse en las variables más restrictivas primero. <br> :heavy_check_mark: Disminuye el número de fallos y retrocesos (backtracking). <br> :heavy_check_mark: Es eficiente en problemas donde algunas variables tiene dominios muy pequeños o están altamente restringidas. <br> :heavy_check_mark: Puede acelerar la búsqueda en problemas donde hay pocas soluciones posibles.| :x: Puede requerir cálculos adicionales para determinar qué variable tiene el menor número de valores posibles. <br> :x: Aunque encuentra una solución rápidamente, no necesariamente es la más óptima en términos de calidad. <br> :x: En problemas con muchas soluciones, puede hacer que se explore más de lo necesario.| 
 | **Smallest**             | :heavy_check_mark: Explora primero los valores más bajos, lo que puede llevar a soluciones más naturales en ciertos problemas. <br> :heavy_check_mark: Puede ser útil en problemas donde los valores más pequeños tienen mayor probabilidad de ser parte de la solución. <br> :heavy_check_mark: En problemas numéricos, puede generar soluciones con valores más pequeños, que podrían ser preferibles en algunos casos. <br>   | :x: No tiene en cuenta las restricciones del problema al seleccionar los valores. Lo que puede resultar en una exploración menos eficiente. <br> :x: Puede conducir a una exploración innecesaria si los valores más pequeños no forman parte de la solución. <br> :x: Puede ser menos eficiente en problemas donde los valores más grandes son más revelante, como en problemas de maximización. <br> |
 | **Input_order**             | :heavy_check_mark: Simple de implementar y no requiere cálculos adicionales. <br> :heavy_check_mark: Puede ser útil si el orden de entrada ya está optimizado para un caso específico. <br> :heavy_check_mark: Puede ser adecuado en problemas donde el orden natural de lectura de datos es relevante. <br>  | :x: No optimiza la búsqueda, lo que puede aumentar el número de intentos fallidos. <br> :x: Puede generar árboles de búsqueda muy grandes y profundos, con más backtracking. <br> :x: No prioriza variables críticas, lo que puede hacer más lenta la resolución del Sudoku. <br> :x: En problemas con muchas restricciones, puede conducir a asignaciones erróneas frecuentes. <br>  |
